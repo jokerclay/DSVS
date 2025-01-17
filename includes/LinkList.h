@@ -1,3 +1,4 @@
+#pragma once
 typedef struct LNode
 {
 	ElemType data;
@@ -11,8 +12,6 @@ void LinkListInit(LinkList& L)
 	L->next = NULL;
 }
 
-
-
 void LinkListHeadInsert(LinkList& L, ElemType value)
 {
 	// 根据数据创建一个新结点
@@ -24,10 +23,8 @@ void LinkListHeadInsert(LinkList& L, ElemType value)
 	L->next = new_node_ptr;
 }
 
-
 void LinkListTailInsert(LNode*& tail_ptr, ElemType value)
 {
-
 	LNode* new_node_ptr = (LinkList)malloc(sizeof(LNode));
 	new_node_ptr->data = value;
 
@@ -75,7 +72,6 @@ LNode* GetByValue(LinkList L, ElemType value)
 	}
 	return NULL;
 }
-
 
 bool InsertAt(LinkList& L, int value, int position)
 {

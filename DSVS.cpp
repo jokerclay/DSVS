@@ -4,19 +4,56 @@
 #include "DSVS.h"
 #include "input/Inputs.c"
 
-typedef int ElemType; 
 
+
+typedef int ElemType;
+
+
+
+
+
+#if 1
 #include "includes/SequentialList.h"
 #include "includes/LinkList.h"
 #include "includes/SqStack.h"
 #include "includes/SqCircleQueue.h"
-
+#endif // 0
+#include "includes/BinaryTree.h"
 #include "includes/LinkQueue.h"
+
+#if 0
+ // 调试二叉树层序遍历的时候打开
+void level_order(BiTree root)
+{
+	LinkQueue Q;
+	InitLinkQueue(Q);
+
+	BiTree p;    // 存储出队的结点
+	EnLinkQueue(Q, root); //把根入队
+
+	while (!LinkQueueIsEmpty(Q))
+	{
+		DeLinkQueue(Q, p);
+		putchar(p->c); // 等价 printf("%c", p->c);
+		if (p->lchild)
+		{
+			EnLinkQueue(Q, p->lchild); // 左孩子不为空，就入队左孩子
+		}
+
+		if (p->rchild)
+		{
+			EnLinkQueue(Q, p->rchild); // 右孩子不为空，就入队右孩子
+		}
+	}
+}
+
+
+#endif // 0
 
 int main()
 {
 #pragma region 你好，世界
-#if 1
+#if 0
 	/******************* 你好，世界开始 *******************/
 	printf(IN_HELLO);
 	/******************* 你好，世界结束 *******************/
@@ -195,7 +232,7 @@ int main()
 
 	// 1. [初始化队列]
 	SqQueue Q;
-	InitQueue(Q);
+	SqInitQueue(Q);
 
 	// 2. [判断队列空]
 	if (SqQueueIsEmpty(Q))
@@ -209,7 +246,7 @@ int main()
 	for (int i = 0; i < 10; i++)
 	{
 		// 3. [入队]
-		if (EnQueue(Q, IN_10_INTS[i]))
+		if (SqEnQueue(Q, IN_10_INTS[i]))
 		{
 			printf("[INFO]: Inserted %d into Queue\n ", IN_10_INTS[i]);
 		}
@@ -223,7 +260,7 @@ int main()
 	{
 		ElemType removed_val;
 		// 4. [出队]
-		if (DeQueue(Q, removed_val))
+		if (SqDeQueue(Q, removed_val))
 		{
 			printf("[INFO]: removed %d from Queue\n ", removed_val);
 		}
@@ -241,24 +278,24 @@ int main()
 
 
 #pragma region 循环链队列
-#if 1
+#if 0
 	/******************* 循环链队列开始 *******************/
 
 		// 初始化队列 --> 入队 --> 出队
 	LinkQueue Q;
 
 	// 1. [初始化队列]，使用带头结点的链表
-	InitQueue(Q);
+	InitLinkQueue(Q);
 
 	// 2. [入队]
 	for (int i = 0; i < 10; ++i)
 	{
-		EnQueue(Q, IN_10_INTS[i]);
+		EnLinkQueue(Q, IN_10_INTS[i]);
 	}
 
 	ElemType dequeued_val = 0;
 	// 3. [出队]
-	if (DeQueue(Q, dequeued_val))
+	if (DeLinkQueue(Q, dequeued_val))
 	{
 		printf("Dequeue success! dequeued value %d \n", dequeued_val);
 	}
@@ -271,17 +308,36 @@ int main()
 #endif // 0
 #pragma endregion
 
-#pragma region 
+
+#pragma region 二叉树
 #if 1
-	/******************* 你好，世界开始 *******************/
-	printf(IN_HELLO);
-	/******************* 你好，世界结束 *******************/
+	/******************* 二叉树开始 *******************/
+	
+
+
+	BiTree tree_root = NULL;
+	BiElementType data[10] = {};
+	for (int i = 0; i < 10; i++)
+	{
+		data[i] = IN_10_CHARS[i];
+	}
+	CreateTree(&tree_root, data, 10);
+
+	pre_order(tree_root);
+	printf("\n");
+
+	in_order(tree_root);
+	printf("\n");
+
+	post_order(tree_root);
+	printf("\n");
+
+	// level_order(tree_root);
+	
+
+	/******************* 二叉树结束 *******************/
 #endif // 0
 #pragma endregion
-
-
-
-
 
 
 	return 0;

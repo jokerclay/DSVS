@@ -1,8 +1,10 @@
-typedef struct LinkNode
-{
-    ElemType data;
+#pragma once
+ // typedef BiTree ElemType; // 调试二叉树层序遍历的时候打开
+
+typedef struct LinkNode {
+     ElemType data;
     struct LinkNode* next;
-}LinkNode;
+} LinkNode;
 
 typedef struct LinkQueue
 {
@@ -12,13 +14,14 @@ typedef struct LinkQueue
 
 
 // 初始化队列，使用带头结点的链表
-void InitQueue(LinkQueue& Q)
+void InitLinkQueue(LinkQueue& Q)
 {
     Q.front = Q.rear = (LinkNode*)malloc(sizeof(LinkNode));
     if (Q.front != NULL) Q.front->next = NULL;
 }
 
-void EnQueue(LinkQueue& Q, ElemType val)
+// 入队
+void EnLinkQueue(LinkQueue& Q, ElemType val)
 {
     LinkNode* new_node = (LinkNode*)malloc(sizeof(LinkNode));
     if (new_node != NULL) {
@@ -33,7 +36,8 @@ void EnQueue(LinkQueue& Q, ElemType val)
 
 }
 
-bool DeQueue(LinkQueue& Q, ElemType& removed_val)
+// 出队
+bool DeLinkQueue(LinkQueue& Q, ElemType& removed_val)
 {
     if (Q.rear == Q.front) return false;
 
@@ -52,4 +56,11 @@ bool DeQueue(LinkQueue& Q, ElemType& removed_val)
     free(removed_node);
     return true;
 }
+
+// 判断队空
+bool LinkQueueIsEmpty(LinkQueue Q)
+{
+    return Q.front == Q.rear;
+}
+
 

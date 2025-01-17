@@ -1,3 +1,5 @@
+#pragma once
+
 #define SqQueueMaxSize 5
 
 
@@ -8,7 +10,7 @@ typedef struct SqQueue
 }SqQueue;
 
 // 初始化队列，即让队列的头和尾都指向 0 号元素
-void InitQueue(SqQueue& Q)
+void SqInitQueue(SqQueue& Q)
 {
     Q.front = 0;
     Q.rear = 0;
@@ -26,8 +28,7 @@ bool isFull(SqQueue Q)
     return false;
 }
 
-
-bool EnQueue(SqQueue& Q, ElemType val)
+bool SqEnQueue(SqQueue& Q, ElemType val)
 {
     if (isFull(Q)) return false;
 
@@ -38,7 +39,7 @@ bool EnQueue(SqQueue& Q, ElemType val)
     return true;
 }
 
-bool DeQueue(SqQueue& Q, ElemType& removed)
+bool SqDeQueue(SqQueue& Q, ElemType& removed)
 {
     if (SqQueueIsEmpty(Q)) return false;
     removed = Q.data[Q.front];

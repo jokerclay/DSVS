@@ -1,3 +1,4 @@
+#pragma once
 #define SqStackMaxsize 5
 
 typedef int ElemType;
@@ -7,7 +8,6 @@ typedef struct SqStack
     ElemType data[SqStackMaxsize];
     int top;
 } SqStack;
-
 
 void InitStack(SqStack& S)
 {
@@ -30,7 +30,6 @@ bool Push(SqStack& S, ElemType value)
     }
     return false;
 }
-
 
 // get the top element of the stack
 bool Peek(SqStack S, ElemType& top_value)

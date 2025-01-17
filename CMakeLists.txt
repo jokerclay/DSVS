@@ -12,7 +12,7 @@ endif()
 project ("DSVS")
 
 # 将源代码添加到此项目的可执行文件。
-add_executable (DSVS "DSVS.cpp" "DSVS.h" "input/Inputs.h" "input/Inputs.c"   "includes/SequentialList.h" "includes/LinkList.h" "includes/SqStack.h" "includes/SqCircleQueue.h" "includes/LinkQueue.h")
+add_executable (DSVS "DSVS.cpp" "DSVS.h" "input/Inputs.h" "input/Inputs.c"   "includes/SequentialList.h" "includes/LinkList.h" "includes/SqStack.h" "includes/SqCircleQueue.h" "includes/LinkQueue.h" "includes/BinaryTree.h")
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET DSVS PROPERTY CXX_STANDARD 20)
